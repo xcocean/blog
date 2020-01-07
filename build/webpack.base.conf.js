@@ -43,8 +43,8 @@ module.exports = {
       '@': resolve('src'),
       //加上公共包
       'commons': resolve('src/commons'),
-      //加上拦截器
-      'interceptors': resolve('src/interceptors'),
+      //store
+      'store': resolve('src/store'),
     }
   },
   module: {

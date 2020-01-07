@@ -1,6 +1,7 @@
 //读取cookies
 let get = function getCookie (name) {
-  var arr, reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)')
+  let arr
+  let reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)')
   if (arr = document.cookie.match(reg)) {
     return unescape(arr[2])
   } else {
@@ -9,10 +10,10 @@ let get = function getCookie (name) {
 }
 
 //删除cookies
-let del = function delCookie (name) {
+let remove = function delCookie (name) {
   var exp = new Date()
   exp.setTime(exp.getTime() - 1)
-  var cval = getCookie(name)
+  var cval = get(name)
   if (cval != null) {
     document.cookie = name + '=' + cval + ';expires=' + exp.toGMTString()
   }
@@ -27,6 +28,6 @@ let set = function setCookie (name, value, seconds) {
 
 export default {
   get,
-  del,
+  remove,
   set
 }

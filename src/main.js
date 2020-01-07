@@ -8,9 +8,7 @@ import App from './App'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import router from './router'
-
-//axios请求
-import axiosInterceptors from 'interceptors/axiosInterceptors'
+import store from 'store/index'
 
 // Vue.use(ElementUI)
 Vue.config.productionTip = false
@@ -25,13 +23,10 @@ router.afterEach(() => {
   NProgress.done()
 })
 
-//全局axios处理
-Vue.use(axiosInterceptors.request)
-Vue.use(axiosInterceptors.response)
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   components: {App},
   template: '<App/>'
