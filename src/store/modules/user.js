@@ -1,5 +1,5 @@
-import request from '../../commons/utils/request'
 import cookieUtil from '../../commons/utils/cookieUtil'
+
 
 const state = {
   isLogin: false,
@@ -24,9 +24,6 @@ const mutations = {
   logout: (state) => {
     cookieUtil.remove('token')
     state.isLogin = false
-    request({url: '/api/logout', params: {'access_token': state.token}}).then(res => {
-      window.setTimeout('window.location.reload()', 2000)
-    })
   },
 }
 
@@ -44,8 +41,8 @@ const actions = {
     commit('setImage', image)
   },
   //注销
-  logout ({commit}) {
-    commit('logout')
+  logout ({commit}, ele) {
+    commit('logout', ele)
   },
 }
 const getters = {
@@ -61,7 +58,6 @@ const getters = {
   image: state => {
     return state.image
   },
-
 }
 
 export default {

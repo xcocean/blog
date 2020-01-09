@@ -8,6 +8,7 @@ import App from './App'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import router from './router'
+import Router from 'vue-router'
 import store from 'store/index'
 
 // Vue.use(ElementUI)
@@ -22,6 +23,12 @@ router.afterEach(() => {
   // 在即将进入新的页面组件前，关闭掉进度条
   NProgress.done()
 })
+
+//重复router.push报错处理
+const originalPush = Router.prototype.push
+Router.prototype.push = function push (location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 
 /* eslint-disable no-new */
 new Vue({
